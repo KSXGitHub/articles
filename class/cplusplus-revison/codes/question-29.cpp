@@ -12,12 +12,12 @@ int main();
 void nhap(mang, unsigned &);
 int kiem_tra(mang, unsigned);
 void xuat(mang, unsigned);
-void tron(mang, mang, mang_tron);
+void tron(mang, unsigned, mang, unsigned, mang_tron, unsigned &);
 
 int main() {
 	mang a, b;
 	mang_tron c;
-	unsigned al, bl;
+	unsigned al, bl, cl;
 	cout << "Nhap do dai va cac phan tu cua mang a tang dan: ";
 	nhap(a, al);
 	cout << "Nhap do dai va cac phan tu cua mang b tang dan: ";
@@ -26,6 +26,10 @@ int main() {
 	xuat(a, al);
 	cout << "Mang b da nhap la: ";
 	xuat(b, bl);
+	tron(a, al, b, bl, c, cl);
+	cout << "Mang tron giua a va b (tang dan): ";
+	xuat(c, cl);
+	return 0;
 }
 
 void nhap(mang a, unsigned &l) {
@@ -41,6 +45,9 @@ void nhap(mang a, unsigned &l) {
 }
 
 int kiem_tra(mang a, unsigned l) {
+	if (!l) {
+		return 0; // Không được nhập mảng rỗng
+	}
 	int moc = a[0];
 	for (unsigned i = 1; i < l; ++i) {
 		if (a[i] > moc) {
@@ -57,4 +64,31 @@ void xuat(mang a, unsigned l) {
 		cout << '\x20' << *i;
 	}
 	cout << endl;
+}
+
+void tron(mang a, unsigned al, mang b, unsigned bl, mang_tron c, unsigned &cl) {
+	unsigned ai = 0, bi = 0, ci = 0;
+	for ( ; ; ) {
+		if (a[ai] > b[bi]) {
+			c[ci] = b[bi];
+			++bi;
+			if (bi == bl) {
+				for ( ; ai != al; ++ai, ++ci) {
+					c[ci] = a[ai];
+				}
+				break;
+			}
+		} else {
+			c[ci] = a[ai];
+			++ai;
+			if (ai == al) {
+				for ( ; bi != bl; ++bi, ++ci) {
+					c[ci] = b[bi];
+				}
+				break;
+			}
+		}
+		++ci;
+	}
+	cl = ci + 1;
 }
