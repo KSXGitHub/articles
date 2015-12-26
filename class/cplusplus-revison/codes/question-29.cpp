@@ -90,5 +90,5 @@ void tron(mang a, unsigned al, mang b, unsigned bl, mang_tron c, unsigned &cl) {
 		}
 		++ci;
 	}
-	cl = ci + 1;
+	cl = ci;
 }
