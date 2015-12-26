@@ -12,6 +12,7 @@ int main();
 void nhap(chuoi, chuoi);
 unsigned dem(chuoi);
 int kiem_tra(chuoi, chuoi);
+int kiem_tra_tien_to(chuoi, char *);
 
 int main() {
 	chuoi s1, s2;
@@ -36,15 +37,15 @@ void nhap(chuoi s1, chuoi s2) {
 }
 
 unsigned dem(chuoi s) {
-	// Tìm vị trí của kí tự '\0'
 	unsigned ket_qua = 0;
-	for (char *i = s; *i; ++i) {
+	for (char *i = s; *i; ++i) { // Vòng lặp này dừng khi gặp '\0'
 		++ket_qua;
 	}
 	return ket_qua;
 }
 
-int kiem_tra(chuoi, chuoi) {
-	// Chưa có gì hết
-	return 0;
+int kiem_tra(chuoi nho, chuoi lon) {
+	for (char *i = lon; *i; ++i) {
+		
+	}
 }
