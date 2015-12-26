@@ -1,5 +1,6 @@
 
 #include <iostream> // Turbo C++: <iostream.h>
+#include <string.h>
 
 using namespace std; // Turbo C++: bỏ, không viết dòng này
 
@@ -24,5 +25,26 @@ int main() {
 	} else {
 		cout << "Chuoi nho khong nam trong chuoi lon\n";
 	}
+	return 0;
+}
+
+void nhap(chuoi s1, chuoi s2) {
+	cout << "Nhap chuoi s1: ";
+	cin.getline(s1, DO_DAI);
+	cout << "Nhap chuoi s2: ";
+	cin.getline(s2, DO_DAI);
+}
+
+unsigned dem(chuoi s) {
+	// Tìm vị trí của kí tự '\0'
+	unsigned ket_qua = 0;
+	for (char *i = s; *i; ++i) {
+		++ket_qua;
+	}
+	return ket_qua;
+}
+
+int kiem_tra(chuoi, chuoi) {
+	// Chưa có gì hết
 	return 0;
 }
