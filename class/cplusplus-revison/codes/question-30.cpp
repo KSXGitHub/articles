@@ -46,6 +46,20 @@ unsigned dem(chuoi s) {
 
 int kiem_tra(chuoi nho, chuoi lon) {
 	for (char *i = lon; *i; ++i) {
-		
+		if (kiem_tra_tien_to(nho, i)) {
+			return 1; // Tìm thấy
+		}
 	}
+	return 0; // Không tìm thấy
+}
+
+int kiem_tra_tien_to(chuoi nho, char *lon) {
+
+	char *i, *ii;
+
+	for (i = nho, ii = lon; *i == *ii; ++i, ++ii);
+
+	// Nếu *i bằng null, trả về true
+	return !(*i);
+
 }
