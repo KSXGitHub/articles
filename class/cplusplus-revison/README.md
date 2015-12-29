@@ -8,3 +8,5 @@ Các chương trình được viết trong này không dành cho Turbo C++ (mà 
  - Trong bài mình không dùng `getch()`, các bạn tự thêm vào
 
 Tất cả các câu mình làm được đặt trong thư mục [./codes](./codes)
+
+<img src="./images/awesome.png" height="150" title="I'm just so awesome!">
