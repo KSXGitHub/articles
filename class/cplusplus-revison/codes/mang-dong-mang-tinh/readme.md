@@ -132,7 +132,7 @@ Tương tự mảng tĩnh
 
 ### Bài toán
 
-Nhập số nguyên dương n, và hai mảng A, B có độ dài n. Xuất mảng C = A + B, biết rằng &forall; i &in; (0; +&infin;) &cap;: C<sub>i</sub> = A<sub>i</sub> + B<sub>i</sub>
+Nhập số nguyên dương n, và hai mảng A, B có độ dài n. Xuất mảng C = A + B, biết rằng &forall; i &in; (0; +&infin;) &cap; &#x2124;: C<sub>i</sub> = A<sub>i</sub> + B<sub>i</sub>
 
 ### Codes:
 
