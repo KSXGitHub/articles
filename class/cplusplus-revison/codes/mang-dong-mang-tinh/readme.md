@@ -1,11 +1,11 @@
 
 # Mảng động vs mảng tĩnh
 
-## Mảng tĩnh
+## 1. Mảng tĩnh
 
-### Khai báo
+### 1.1. Khai báo
 
-#### Cú pháp
+#### 1.1.1. Cú pháp
 
 ```c++
 ElementType ArrayName[ArrayLength];
@@ -16,7 +16,7 @@ Trong đó:
  - `ArrayName` là tên mảng
  - `ArrayLength` là độ dài được bộ nhớ cấp phát cho mảng, độ dài phải là một hằng số nguyên dương
 
-#### Ví dụ
+#### 1.1.2. Ví dụ
 
 ```c++
 int myarray[255];
@@ -32,7 +32,7 @@ typedef int MyArray[255];
 MyArray myarray;
 ```
 
-### Duyệt mảng
+### 1.2. Duyệt mảng
 
 Ví dụ: Người dùng nhập độ dài và các phần tử của mảng
 
@@ -68,11 +68,11 @@ void nhapmang(Array array, int * end) {
 }
 ```
 
-## Mảng tĩnh
+## 2. Mảng tĩnh
 
-### Khai báo, khởi tạo, phá hủy
+### 2.1. Khai báo, khởi tạo, phá hủy
 
-#### Cú pháp khai báo
+#### 2.1.1. Cú pháp khai báo
 
 **Bản chất:** Khai báo con trỏ
 
@@ -85,7 +85,7 @@ template <typename type> using pointer = type *;
 pointer<ElementType> ArrayName;
 ```
 
-#### Cú pháp khởi tạo
+#### 2.1.2. Cú pháp khởi tạo
 
 **Bản chất:** Gán cho con trỏ một giá trị bằng con trỏ trỏ tới phần tử đầu tiên của một vùng nhớ mới được cấp phát
 
@@ -100,7 +100,7 @@ Xem thêm:
  - http://en.cppreference.com/w/cpp/memory/new/operator_new
  - http://www.cplusplus.com/reference/new/operator%20new/
 
-#### Cú pháp phá hủy
+#### 2.1.3. Cú pháp phá hủy
 
 **Bản chất:** Giải phóng vùng nhớ được cấp phát cho mảng động, nhờ vậy, vùng nhớ này (hoặc một phần của nó) có thể được cấp phát lại cho một mảng động khác (khi dùng toán tử `new`)
 
@@ -112,7 +112,7 @@ Xem thêm:
  - http://en.cppreference.com/w/cpp/memory/new/operator_delete
  - http://www.cplusplus.com/reference/new/operator%20delete[]/
 
-#### Ví dụ
+#### 2.1.4. Ví dụ
 
 ```c++
 unsigned length;
@@ -124,17 +124,17 @@ xuatmang(array, length);
 delete[] array;
 ```
 
-### Duyệt mảng
+### 2.2. Duyệt mảng
 
 Tương tự mảng tĩnh
 
-## Ví dụ
+## 3. Ví dụ
 
-### Bài toán
+### 3.1. Bài toán
 
 Nhập số nguyên dương n, và hai mảng A, B có độ dài n. Xuất mảng C = A + B, biết rằng &forall; i &in; (0; +&infin;) &cap; &#x2124;: C<sub>i</sub> = A<sub>i</sub> + B<sub>i</sub>
 
-### Codes:
+### 3.2. Codes
 
  * [Mảng tĩnh](./mang-tinh.cpp)
 
