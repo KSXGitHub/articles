@@ -7,15 +7,14 @@ const unsigned nmax = 255;
 typedef int mang[nmax];
 
 int main();
+unsigned nhapdodai();
 void nhapmang(mang, unsigned);
 void xuatmang(mang, unsigned);
 void congmang(mang, mang, mang, unsigned);
 
 int main() {
 	mang A, B, C;
-	unsigned n;
-	cout << "Nhap do dai: ";
-	cin >> n;
+	unsigned n = nhapdodai();
 	cout << "Nhap mang A: ";
 	nhapmang(A, n);
 	cout << "Nhap mang B: ";
@@ -24,6 +23,17 @@ int main() {
 	cout << "A + B: ";
 	xuatmang(C, n);
 	return 0;
+}
+
+void nhapdodai() {
+	unsigned n;
+	cout << "Nhap do dai: ";
+	begin:
+	cin >> n;
+	if (n > nmax) {
+		cout << "Do dai khong hop le.\nNhap lai: ";
+		goto begin:
+	}
 }
 
 void nhapmang(mang X, unsigned n) {
