@@ -20,7 +20,7 @@
 
 1. Nhập số nguyên không âm n và số thực x
 
-2. S &leftarrow; 0; Tich &leftarrow; 1; GiaiThua &leftarrow; 1; i &leftarrow; 1
+2. S &leftarrow; 0; Tich &leftarrow; 1; GiaiThua &leftarrow; 1; i &leftarrow; 0
 
 3. Nếu i > n, chuyển đến bước 7
 
