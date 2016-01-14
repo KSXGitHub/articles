@@ -16,12 +16,12 @@ int main() {
 }
 
 double tong(unsigned n, double x) {
-	double S = 0, tich = 1;
+	double S = 1, tich = 1;
 	unsigned giaithua = 1;
 	for (unsigned i = 1; i <= n; ++i) {
 		tich *= x;
 		giaithua *= i;
 		S += tich / giaithua;
 	}
-	return S + 1;
+	return S;
 }
