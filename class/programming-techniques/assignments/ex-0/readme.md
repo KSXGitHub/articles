@@ -17,3 +17,17 @@
 ## Giải thuật
 
  * Xem [./main.cpp](./main.cpp) để biết thêm chi tiết
+
+1. Nhập số nguyên không âm n và số thực x
+
+2. S &leftarrow; 0; Tich &leftarrow; 1; GiaiThua &leftarrow; 1; i &leftarrow; 1
+
+3. Nếu i > n, chuyển đến bước 7
+
+4. Tich &leftarrow; Tich &times; x; GiaiThua &leftarrow; GiaiThua &times; i
+
+5. S &leftarrow; S + Tich/GiaiThua
+
+6. i &leftarrow; i + 1; Chuyển đến bước 3
+
+7. Output là S. Kết thúc.
