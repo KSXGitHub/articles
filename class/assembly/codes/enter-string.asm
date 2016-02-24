@@ -9,7 +9,7 @@
 
 	reply db 10, 13, 'Chuoi vua nhap: $',
 
-	strbuf db 32 ; Do dai toi da cua chuoi la 32
+	strbuf db 32 ; Do dai toi da cua chuoi la 31
 	db ? ; So ki tu vua nhap se duoc luu o day
 	str db 32 dup('$') ; Chuoi vua nhap se duoc luu o day
 
