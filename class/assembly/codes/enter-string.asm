@@ -13,7 +13,7 @@
 	db ? ; So ki tu vua nhap se duoc luu o day
 	str db 32 dup('$') ; Chuoi vua nhap se duoc luu o day
 
-.code
+.code 
 
 	main proc
 
