@@ -27,8 +27,9 @@ int main() {
 	Matrix matrix;
 	cout << "Nhap mot ma tran 4x5:\n";
 	input(matrix);
-	cout << "Kieu sap xep:\n - A: bubble-sort\n - B: shaker-sort\n";
 	sorter_t *sort = getsorter();
+	cout << "Ma tran da nhap:\n";
+	output(matrix);
 	sort(BEGIN_MATRIX(matrix), END_MATRIX(matrix, SIZE));
 	cout << "Ma tran da sap xep:\n";
 	output(matrix);
@@ -57,27 +58,31 @@ void input(int *begin, int *end) {
 sorter_t *getsorter() {
 	char x;
 	begin:
+	cout << "Kieu sap xep:\n - A: bubble-sort\n - B: shaker-sort\n";
 	cin >> x;
 	switch (x) {
 		case 'A':
 		case 'a':
-			return bubble;
+			return &bubble;
 		case 'B':
 		case 'b':
-			return shaker;
+			return &shaker;
 	}
+	cerr << "Sai lua chon: chi duoc nhap 'A' hoac 'B'\n";
 	goto begin;
 }
 
 void bubble(int *begin, int *end) {
-	bool swapped;
-	for (int *i = begin, *e = end - 1; swapped && i != e; ++i) {
-		swapped = false;
-		for (int *j = e; j != i; --j) {
-			if (*j < *(j - 1)) {
-				swap(i, j);
-				swapped = true;
+	for (int *i = begin, *e = end - 1; i != e; ++i) {
+		bool done = true;
+		for (int *j = e, *jj = j - 1; j != i; --j, --jj) {
+			if (*j < *jj) {
+				swap(j, jj);
+				done = false;
 			}
+		}
+		if (done) {
+			return;
 		}
 	}
 }
@@ -87,14 +92,14 @@ void shaker(int *begin, int *end) {
 	int *right = end - 1;
 	unsigned k = unsigned(right);
 	while (left < right) {
-		for (int *i = right, *ii = i - 1; i != left; --i) {
+		for (int *i = right, *ii = i - 1; i != left; --i, --ii) {
 			if (*i < *ii) {
 				swap(i, ii);
 				k = unsigned(i);
 			}
 		}
 		left = (int *) k;
-		for (int *i = left, *ii = i + 1; i != right; ++i) {
+		for (int *i = left, *ii = i + 1; i != right; ++i, ++ii) {
 			if (*i > *ii) {
 				swap(i, ii);
 				k = unsigned(i);
