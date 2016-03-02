@@ -25,8 +25,6 @@
 
 ## Code
 
- - Sử dụng mảng: [../codes/question-01.0.cpp](../codes/question-01.0.cpp)
+ - Sử dụng danh sách liên kết tự tạo: [../codes/question-01.0.cpp](../codes/question-01.0.cpp)
 
- - Sử dụng danh sách liên kết tự tạo: [../codes/question-01.1.cpp](../codes/question-01.1.cpp)
-
- - Sử dụng danh sách liên kết `std::list`: [../codes/question-01.2.cpp](../codes/question-01.2.cpp)
+ - Sử dụng danh sách liên kết `std::list`: [../codes/question-01.1.cpp](../codes/question-01.1.cpp)
