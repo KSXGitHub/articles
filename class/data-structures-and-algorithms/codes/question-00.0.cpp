@@ -1,0 +1,121 @@
+
+#include <iostream>
+
+using namespace std;
+
+template <class Data>
+struct Node {
+	Data data;
+	Node *node;
+	Node (Data data) {
+		Node::data = data;
+	}
+	Node (Data data, Node *next) {
+		Node::data = data;
+		Node::next = next;
+	}
+}
+
+template <class Data>
+struct List {
+	Node *head;
+	List () {
+		head = NULL;
+	}
+	bool disposeHead() {}
+	bool findAndDispose(Data) {}
+	void sort(bool (*compare)(Data, Data)) {}
+	Node *insertAfter(Node *position, Node *newnode) {}
+};
+
+typedef void (*Action)(List<int> &);
+
+int main();
+
+Action getAction();
+
+void inputList(List<int> &);
+void printList(List<int> &);
+void findInList(List<int> &);
+void disposeHead(List<int> &);
+void findAndDispose(List<int> &);
+void sortAndInsert(List<int> &);
+void printError(List<int> &);
+
+constexpr Action ACTIONS = {
+	NULL, &inputList, &printList, &findInList, &disposeHead, &findAndDispose, &sortAndInsert
+};
+
+constexpr auto LENGTH_OF_ACTIONS = sizeof(ACTIONS) / sizeof(Action);
+constexpr char SELECTION_BEGIN = '0';
+constexpr char SELECTION_END = SELECTION_BEGIN + LENGTH_OF_ACTIONS - 1;
+
+int findInList(List<int>, int);
+void increasedListInsert(List<int> &, int);
+
+constexpr char ASK_FOR_ACTION[] = "\
+Chon hanh dong:\n\
+ [0] -> Thoat\n\
+ [1] -> Nhap danh sach\n\
+ [2] -> Xem danh sach\n\
+ [3] -> Tim x trong danh sach\n\
+ [4] -> Xoa phan tu dau danh sach
+ [5] -> Tim va xoa 1 phan tu x khoi danh sach\n\
+ [6] -> Sap xep theo thu tu tang dan, chen x vao mang da sap xep\n\
+";
+
+int main() {
+	List<int> list;
+	for ( ; ; ) {
+		auto act = getAction();
+		if (!act) {
+			return 0;
+		}
+		act(list);
+	}
+	return 0;
+}
+
+Action getAction() {
+	char selection;
+	cout << ASK_FOR_ACTION;
+	cin >> selection;
+	return selection < SELECTION_BEGIN || selection > SELECTION_END ? &printError : ACTIONS[selection - '0'];
+}
+
+void inputList(List<int> &list) {
+	unsigned count;
+	Node *node, *prev;
+	cout << "So luong: ";
+	for (cin >> count; count; --count) {
+		int data;
+		cin >> data;
+		Node *node = new Node(data);
+		if (list.head) {
+			prev->next = node;
+			prev = node;
+		} else {
+			list.head = prev = node;
+		}
+	}
+}
+
+void printList(List<int> &list) {
+	cout << "List: ";
+	for (auto node = list.head; node; node = node->next) {
+		cout << '\x20' << node->data;
+	}
+	cout << endl;
+}
+
+void findInList(List<int> &list) {
+	int x;
+	cout << "Enter an integer: ";
+	cin >> x;
+	auto index = findInList(list, x);
+	if (index == -1) {
+		cout << "Khong tim thay " << x << endl;
+	} else {
+		cout << "Tim thay " << x << " tai vi tri " << index << endl;
+	}
+}
