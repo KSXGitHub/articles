@@ -140,7 +140,7 @@ Action getAction() {
 		" [1] -> Nhap danh sach\n"
 		" [2] -> Xem danh sach\n"
 		" [3] -> Tim x trong danh sach\n"
-		" [4] -> Xoa phan tu dau danh sach"
+		" [4] -> Xoa phan tu dau danh sach\n"
 		" [5] -> Tim va xoa 1 phan tu x khoi danh sach\n"
 		" [6] -> Sap xep theo thu tu tang dan, chen x vao mang da sap xep\n"
 		" Nhap mot ki tu: "
