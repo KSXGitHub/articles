@@ -8,10 +8,7 @@ template <class Data>
 struct Node {
 	Data data;
 	Node *next;
-	Node (Data data) {
-		Node::data = data;
-	}
-	Node (Data data, Node *next) {
+	Node (Data data, Node *next = NULL) {
 		Node::data = data;
 		Node::next = next;
 	}
@@ -47,18 +44,19 @@ struct List {
 			return false;
 		}
 		if (head->data == data) {
+			auto newhead = head->next;
 			delete head;
-			head = head->next;
+			head = newhead;
 			return true;
 		}
 		for (auto prev = head; ; ) {
 			auto node = prev->next;
 			if (node) {
 				if (node->data == data) {
-					delete node;
-					prev->next = node->next;
+					disposeAfter(prev);
 					return true;
 				}
+				prev = prev->next;
 			} else {
 				return false;
 			}
@@ -91,6 +89,32 @@ struct List {
 		insertAfter(position, newnode);
 		return newnode;
 	}
+	Node<Data> *removeAfter(Node<Data> *position) {
+		auto node = position->next;
+		position->next = node->next;
+		return node;
+	}
+	bool disposeAfter(Node<Data> *position) {
+		auto node = removeAfter(position);
+		if (node) {
+			delete node;
+			return true;
+		} else {
+			return false;
+		}
+	}
+	void clear() {
+		auto node = head;
+		head = NULL;
+		while (node) {
+			auto newnode = node->next;
+			delete node;
+			node = newnode;
+		}
+	}
+	~List () {
+		clear();
+	}
 };
 
 typedef void (*Action)(List<int> &);
@@ -115,6 +139,7 @@ constexpr auto LENGTH_OF_ACTIONS = sizeof(ACTIONS) / sizeof(Action);
 constexpr char SELECTION_BEGIN = '0';
 constexpr char SELECTION_END = SELECTION_BEGIN + LENGTH_OF_ACTIONS - 1;
 
+void waitUserEnter();
 int findInList(List<int>, int);
 
 namespace sorted {
@@ -136,14 +161,14 @@ int main() {
 
 Action getAction() {
 	constexpr char ASK_FOR_ACTION[] =
-		"Chon hanh dong:\n"
-		" [0] -> Thoat\n"
-		" [1] -> Nhap danh sach\n"
-		" [2] -> Xem danh sach\n"
-		" [3] -> Tim x trong danh sach\n"
-		" [4] -> Xoa phan tu dau danh sach\n"
-		" [5] -> Tim va xoa 1 phan tu x khoi danh sach\n"
-		" [6] -> Sap xep theo thu tu tang dan, chen x vao mang da sap xep\n"
+		"\x1B[35mChon hanh dong:\n"
+		"  \x1B[32m[0] \x1B[36m->\x1B[0m Thoat\n"
+		"  \x1B[32m[1] \x1B[36m->\x1B[0m Nhap danh sach \x1B[31m(Danh sach se bi lam trong)\x1B[0m\n"
+		"  \x1B[32m[2] \x1B[36m->\x1B[0m Xem danh sach\n"
+		"  \x1B[32m[3] \x1B[36m->\x1B[0m Tim x trong danh sach\n"
+		"  \x1B[32m[4] \x1B[36m->\x1B[0m Xoa phan tu dau danh sach\n"
+		"  \x1B[32m[5] \x1B[36m->\x1B[0m Tim va xoa 1 phan tu x khoi danh sach\n"
+		"  \x1B[32m[6] \x1B[36m->\x1B[0m Sap xep theo thu tu tang dan, chen x vao mang da sap xep\n"
 		" Nhap mot ki tu: "
 	;
 	char selection;
@@ -154,7 +179,9 @@ Action getAction() {
 
 void inputList(List<int> &list) {
 	unsigned count;
-	cout << "So luong va cac phan tu: ";
+	list.clear();
+	cerr << "Da lam trong danh sach\n";
+	cout << "So luong va cac phan tu hoac nhap 0 de lam trong danh sach: ";
 	cin >> count;
 	if (count) {
 		int data;
@@ -169,8 +196,6 @@ void inputList(List<int> &list) {
 				return;
 			}
 		}
-	} else {
-		cerr << "So luong phai la mot so nguyen duong\n";
 	}
 }
 
@@ -180,6 +205,7 @@ void printList(List<int> &list) {
 		cout << '\x20' << node->data;
 	}
 	cout << endl;
+	waitUserEnter();
 }
 
 void findInList(List<int> &list) {
@@ -192,6 +218,7 @@ void findInList(List<int> &list) {
 	} else {
 		cout << "Tim thay " << x << " tai vi tri " << index << " (Quy uoc phan tu dau co vi tri 0)\n";
 	}
+	waitUserEnter();
 }
 
 void disposeHead(List<int> &list) {
@@ -200,6 +227,7 @@ void disposeHead(List<int> &list) {
 		printList(list);
 	} else {
 		cerr << "Danh sach trong\n";
+		waitUserEnter();
 	}
 }
 
@@ -209,8 +237,10 @@ void findAndDispose(List<int> &list) {
 	cin >> x;
 	if (list.findAndDispose(x)) {
 		cout << "Da xoa mot phan tu co khoa " << x << " khoi danh sach\n";
+		printList(list);
 	} else {
 		cerr << "Khong co phan tu nao co khoa " << x << endl;
+		waitUserEnter();
 	}
 }
 
@@ -226,6 +256,14 @@ void sortAndInsert(List<int> &list) {
 
 void printInvalidSelectionError(List<int> &) {
 	cerr << "Lua chon khong hop le\n";
+	waitUserEnter();
+}
+
+void waitUserEnter() {
+	cin.get();
+	cout << "Nhan \x1B[32mENTER\x1B[0m de tiep tuc...";
+	cin.get();
+	cout << endl;
 }
 
 int findInList(List<int> list, int x) {
@@ -253,21 +291,22 @@ void sorted::askForInsertion(List<int> &list) {
 }
 
 void sorted::insert(List<int> &list, int x) {
-	constexpr auto MAX_OF_INT = numeric_limits<int>::max();
 	auto nearest = list.head;
-	if (!nearest) {
+	if (!nearest || nearest->data > x) {
 		list.insertHead(x);
 		return;
 	}
-	auto min_distance = nearest->data < x ? (x - nearest->data) : MAX_OF_INT;
-	for (auto node = nearest->next; node; node = node->next) {
-		if (node->data < x) {
-			auto from_node = node->data - x;
-			if (from_node < min_distance) {
-				nearest = node;
-				min_distance = from_node;
+	for (auto prev = nearest; ; ) {
+		auto node = prev->next;
+		if (node) {
+			if (node->data > x) {
+				list.insertAfter(prev, x);
+				return;
 			}
+			prev = node;
+		} else {
+			list.insertAfter(prev, x);
+			return;
 		}
 	}
-	list.insertAfter(nearest, x);
 }
