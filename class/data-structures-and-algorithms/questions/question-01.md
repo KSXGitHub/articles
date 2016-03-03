@@ -25,6 +25,4 @@
 
 ## Code
 
- - Sử dụng danh sách liên kết tự tạo: [../codes/question-01.0.cpp](../codes/question-01.0.cpp)
-
- - Sử dụng danh sách liên kết `std::list`: [../codes/question-01.1.cpp](../codes/question-01.1.cpp)
+ - [../codes/question-01.cpp](../codes/question-01.cpp)
