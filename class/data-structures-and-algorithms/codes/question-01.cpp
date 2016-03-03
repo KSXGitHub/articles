@@ -154,7 +154,7 @@ Action getAction() {
 void inputList(List<int> &list) {
 	unsigned count;
 	Node<int> *prev;
-	cout << "So luong: ";
+	cout << "So luong va cac phan tu: ";
 	for (cin >> count; count; --count) {
 		int data;
 		cin >> data;
