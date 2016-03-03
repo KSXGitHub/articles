@@ -17,11 +17,13 @@
 
 # Bài làm
 
-## Yêu cầu phần mềm
+## Dịch và chạy
 
  - Dịch và chạy trực tiếp trên máy: Trình dịch hỗ trợ C++ 14 (vd GCC >= 5.0.0, Visual Studio 2015 ...)
 
  - Dịch và chạy online: http://cpp.sh
+
+ - Chỉ cần chạy: [Tải về từ Google Drive](https://drive.google.com/open?id=0Bw61s0EF27zqQmx5ekp1QlExVGM)
 
 ## Code
 
