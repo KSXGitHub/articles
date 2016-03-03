@@ -34,8 +34,9 @@ struct List {
 	}
 	bool disposeHead() {
 		if (head) {
+			auto newhead = head->next;
 			delete head;
-			head = head->next;
+			head = newhead;
 			return true;
 		} else {
 			return false;
