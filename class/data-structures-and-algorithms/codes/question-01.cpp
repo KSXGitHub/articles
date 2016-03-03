@@ -1,6 +1,6 @@
 
 #include <iostream>
-#include <climits>
+#include <limits>
 
 using namespace std;
 
@@ -23,13 +23,73 @@ struct List {
 	List () {
 		head = NULL;
 	}
-	void insertHead(Node *newhead) {}
-	Node *insertHead(Data data) {}
-	bool disposeHead() {}
-	bool findAndDispose(Data) {}
-	void sort(bool (*compare)(Data, Data)) {}
-	void insertAfter(Node *position, Node *newnode) {}
-	Node *insertAfter(Node *position, Data data) {}
+	void insertHead(Node *newhead) {
+		newhead->next = head;
+		head = newhead;
+	}
+	Node *insertHead(Data data) {
+		auto newhead = new Head(data);
+		insertHead(newhead);
+		return newhead;
+	}
+	bool disposeHead() {
+		if (head) {
+			delete head;
+			head = head->next;
+			return true;
+		} else {
+			return false;
+		}
+	}
+	bool findAndDispose(Data data) {
+		if (!head) {
+			return false;
+		}
+		if (head->data == data) {
+			delete head;
+			head = head->next;
+			return true;
+		}
+		for (auto prev = head; ; ) {
+			auto node = prev->next;
+			if (node) {
+				if (node->data == data) {
+					delete node;
+					prev->next = node->next;
+					return true;
+				}
+			} else {
+				return false;
+			}
+		}
+	}
+	void sort(bool (*compare)(Data, Data)) {
+		constexpr auto swap = [](Data &a, Data &b) {
+			auto t = a;
+			a = b;
+			b = t;
+		};
+		for (auto i = list.head; i; i = i->next) {
+			for (auto j = i; j; j = j->next) {
+				if (compare(*i, *j)) {
+					swap(i, j);
+				}
+			}
+		}
+	}
+	void insertAfter(Node *position, Node *newnode) {
+		if (position) {
+			newnode->next = position->next;
+			position->next = newnode;
+		} else {
+			insertHead(newnode);
+		}
+	}
+	Node *insertAfter(Node *position, Data data) {
+		auto newnode = new Node(data);
+		insertAfter(newnode);
+		return newnode;
+	}
 };
 
 typedef void (*Action)(List<int> &);
@@ -188,12 +248,13 @@ void sorted::askForInsertion(List<int> &list) {
 }
 
 void sorted::insert(List<int> &list, int x) {
+	constexpr auto MAX_OF_INT = numeric_limits<int>::max();
 	auto nearest = list.head;
 	if (!nearest) {
 		list.insertHead(x);
 		return;
 	}
-	auto min_distance = nearest->data < x ? (x - nearest->data) : INT_MAX;
+	auto min_distance = nearest->data < x ? (x - nearest->data) : MAX_OF_INT;
 	for (auto node = nearest->next; node; node = node->next) {
 		if (node->data < x) {
 			auto from_node = node->data - x;
