@@ -51,7 +51,11 @@ constexpr char SELECTION_BEGIN = '0';
 constexpr char SELECTION_END = SELECTION_BEGIN + LENGTH_OF_ACTIONS - 1;
 
 int findInList(List<int>, int);
-void increasedListInsert(List<int> &, int);
+
+namespace sorted {
+	void askForInsertion(List<int> &);
+	void insert(List<int> &, int);
+}
 
 constexpr char ASK_FOR_ACTION[] = "\
 Chon hanh dong:\n\
@@ -62,6 +66,7 @@ Chon hanh dong:\n\
  [4] -> Xoa phan tu dau danh sach
  [5] -> Tim va xoa 1 phan tu x khoi danh sach\n\
  [6] -> Sap xep theo thu tu tang dan, chen x vao mang da sap xep\n\
+ Nhap mot ki tu: \
 ";
 
 int main() {
@@ -110,7 +115,7 @@ void printList(List<int> &list) {
 
 void findInList(List<int> &list) {
 	int x;
-	cout << "Enter an integer: ";
+	cout << "Nhap mot so nguyen: ";
 	cin >> x;
 	auto index = findInList(list, x);
 	if (index == -1) {
@@ -118,4 +123,34 @@ void findInList(List<int> &list) {
 	} else {
 		cout << "Tim thay " << x << " tai vi tri " << index << endl;
 	}
+}
+
+void disposeHead(List<int> &list) {
+	if (list.disposeHead()) {
+		cout << "Da xoa mot head\n";
+		printList(list);
+	} else {
+		cerr << "Danh sach trong\n";
+	}
+}
+
+void findAndDispose(List<int> &list) {
+	int x;
+	cout << "Nhap mot so nguyen: ";
+	cin >> x;
+	if (list.findAndDispose(x)) {
+		cout << "Da xoa mot phan tu co khoa " << x << " khoi danh sach\n";
+	} else {
+		cerr << "Khong co phan tu nao co khoa " << x << endl;
+	}
+}
+
+void sortAndInsert(List<int> &list) {
+	constexpr auto INCREMENT_SORT = [](int left, int right) {
+		return left > right;
+	};
+	list.sort(INCREMENT_SORT);
+	cout << "Da sap xep xong\n";
+	printList(list);
+	sorted::askForInsertion(list);
 }
