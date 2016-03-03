@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <climits>
 
 using namespace std;
 
@@ -14,7 +15,7 @@ struct Node {
 		Node::data = data;
 		Node::next = next;
 	}
-}
+};
 
 template <class Data>
 struct List {
@@ -22,10 +23,13 @@ struct List {
 	List () {
 		head = NULL;
 	}
+	void insertHead(Node *newhead) {}
+	Node *insertHead(Data data) {}
 	bool disposeHead() {}
 	bool findAndDispose(Data) {}
 	void sort(bool (*compare)(Data, Data)) {}
-	Node *insertAfter(Node *position, Node *newnode) {}
+	void insertAfter(Node *position, Node *newnode) {}
+	Node *insertAfter(Node *position, Data data) {}
 };
 
 typedef void (*Action)(List<int> &);
@@ -181,4 +185,23 @@ void sorted::askForInsertion(List<int> &list) {
 	}
 	cout << "Da chen\n";
 	printList(list);
+}
+
+void sorted::insert(List<int> &list, int x) {
+	auto nearest = list.head;
+	if (!nearest) {
+		list.insertHead(x);
+		return;
+	}
+	auto min_distance = nearest->data < x ? (x - nearest->data) : INT_MAX;
+	for (auto node = nearest->next; node; node = node->next) {
+		if (node->data < x) {
+			auto from_node = node->data - x;
+			if (from_node < min_distance) {
+				nearest = node;
+				min_distance = from_node;
+			}
+		}
+	}
+	list.insertAfter(nearest, x);
 }
