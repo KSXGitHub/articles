@@ -7,7 +7,7 @@ using namespace std;
 template <class Data>
 struct Node {
 	Data data;
-	Node *node;
+	Node *next;
 	Node (Data data) {
 		Node::data = data;
 	}
@@ -19,16 +19,16 @@ struct Node {
 
 template <class Data>
 struct List {
-	Node *head;
+	Node<Data> *head;
 	List () {
 		head = NULL;
 	}
-	void insertHead(Node *newhead) {
+	void insertHead(Node<Data> *newhead) {
 		newhead->next = head;
 		head = newhead;
 	}
-	Node *insertHead(Data data) {
-		auto newhead = new Head(data);
+	Node<Data> *insertHead(Data data) {
+		auto newhead = new Node<Data>(data);
 		insertHead(newhead);
 		return newhead;
 	}
@@ -69,15 +69,15 @@ struct List {
 			a = b;
 			b = t;
 		};
-		for (auto i = list.head; i; i = i->next) {
+		for (auto i = head; i; i = i->next) {
 			for (auto j = i; j; j = j->next) {
-				if (compare(*i, *j)) {
-					swap(i, j);
+				if (compare(i->data, j->data)) {
+					swap(i->data, j->data);
 				}
 			}
 		}
 	}
-	void insertAfter(Node *position, Node *newnode) {
+	void insertAfter(Node<Data> *position, Node<Data> *newnode) {
 		if (position) {
 			newnode->next = position->next;
 			position->next = newnode;
@@ -85,9 +85,9 @@ struct List {
 			insertHead(newnode);
 		}
 	}
-	Node *insertAfter(Node *position, Data data) {
-		auto newnode = new Node(data);
-		insertAfter(newnode);
+	Node<Data> *insertAfter(Node<Data> *position, Data data) {
+		auto newnode = new Node<Data>(data);
+		insertAfter(position, newnode);
 		return newnode;
 	}
 };
@@ -106,7 +106,7 @@ void findAndDispose(List<int> &);
 void sortAndInsert(List<int> &);
 void printInvalidSelectionError(List<int> &);
 
-constexpr Action ACTIONS = {
+constexpr Action ACTIONS[] = {
 	NULL, &inputList, &printList, &findInList, &disposeHead, &findAndDispose, &sortAndInsert
 };
 
@@ -121,18 +121,6 @@ namespace sorted {
 	void insert(List<int> &, int);
 }
 
-constexpr char ASK_FOR_ACTION[] = "\
-Chon hanh dong:\n\
- [0] -> Thoat\n\
- [1] -> Nhap danh sach\n\
- [2] -> Xem danh sach\n\
- [3] -> Tim x trong danh sach\n\
- [4] -> Xoa phan tu dau danh sach
- [5] -> Tim va xoa 1 phan tu x khoi danh sach\n\
- [6] -> Sap xep theo thu tu tang dan, chen x vao mang da sap xep\n\
- Nhap mot ki tu: \
-";
-
 int main() {
 	List<int> list;
 	for ( ; ; ) {
@@ -146,6 +134,17 @@ int main() {
 }
 
 Action getAction() {
+	constexpr char ASK_FOR_ACTION[] =
+		"Chon hanh dong:\n"
+		" [0] -> Thoat\n"
+		" [1] -> Nhap danh sach\n"
+		" [2] -> Xem danh sach\n"
+		" [3] -> Tim x trong danh sach\n"
+		" [4] -> Xoa phan tu dau danh sach"
+		" [5] -> Tim va xoa 1 phan tu x khoi danh sach\n"
+		" [6] -> Sap xep theo thu tu tang dan, chen x vao mang da sap xep\n"
+		" Nhap mot ki tu: "
+	;
 	char selection;
 	cout << ASK_FOR_ACTION;
 	cin >> selection;
@@ -154,12 +153,12 @@ Action getAction() {
 
 void inputList(List<int> &list) {
 	unsigned count;
-	Node *node, *prev;
+	Node<int> *prev;
 	cout << "So luong: ";
 	for (cin >> count; count; --count) {
 		int data;
 		cin >> data;
-		Node *node = new Node(data);
+		Node<int> *node = new Node<int>(data);
 		if (list.head) {
 			prev->next = node;
 			prev = node;
