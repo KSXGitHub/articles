@@ -40,7 +40,7 @@ void findInList(List<int> &);
 void disposeHead(List<int> &);
 void findAndDispose(List<int> &);
 void sortAndInsert(List<int> &);
-void printError(List<int> &);
+void printInvalidSelectionError(List<int> &);
 
 constexpr Action ACTIONS = {
 	NULL, &inputList, &printList, &findInList, &disposeHead, &findAndDispose, &sortAndInsert
@@ -85,7 +85,7 @@ Action getAction() {
 	char selection;
 	cout << ASK_FOR_ACTION;
 	cin >> selection;
-	return selection < SELECTION_BEGIN || selection > SELECTION_END ? &printError : ACTIONS[selection - '0'];
+	return selection < SELECTION_BEGIN || selection > SELECTION_END ? &printInvalidSelectionError : ACTIONS[selection - '0'];
 }
 
 void inputList(List<int> &list) {
@@ -153,4 +153,32 @@ void sortAndInsert(List<int> &list) {
 	cout << "Da sap xep xong\n";
 	printList(list);
 	sorted::askForInsertion(list);
+}
+
+void printInvalidSelectionError(List<int> &) {
+	cerr << "Lua chon khong hop le\n";
+}
+
+int findInList(List<int> list, int x) {
+	int count = 0;
+	for (auto node = list.head; node; node = node->next) {
+		if (node->data == x) {
+			return count;
+		} else {
+			++count;
+		}
+	}
+	return -1;
+}
+
+void sorted::askForInsertion(List<int> &list) {
+	unsigned count;
+	cout << "Nhap so luong va cac phan tu can chen: ";
+	for (cin >> count; count; --count) {
+		unsigned x;
+		cin >> x;
+		sorted::insert(list, x);
+	}
+	cout << "Da chen\n";
+	printList(list);
 }
