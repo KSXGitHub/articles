@@ -153,18 +153,23 @@ Action getAction() {
 
 void inputList(List<int> &list) {
 	unsigned count;
-	Node<int> *prev;
 	cout << "So luong va cac phan tu: ";
-	for (cin >> count; count; --count) {
+	cin >> count;
+	if (count) {
 		int data;
 		cin >> data;
-		Node<int> *node = new Node<int>(data);
-		if (list.head) {
-			prev->next = node;
-			prev = node;
-		} else {
-			list.head = prev = node;
+		auto prev = list.insertHead(data);
+		for ( ; ; ) {
+			--count;
+			if (count) {
+				cin >> data;
+				prev = list.insertAfter(prev, data);
+			} else {
+				return;
+			}
 		}
+	} else {
+		cerr << "So luong phai la mot so nguyen duong\n";
 	}
 }
 
@@ -184,7 +189,7 @@ void findInList(List<int> &list) {
 	if (index == -1) {
 		cout << "Khong tim thay " << x << endl;
 	} else {
-		cout << "Tim thay " << x << " tai vi tri " << index << endl;
+		cout << "Tim thay " << x << " tai vi tri " << index << " (Quy uoc phan tu dau co vi tri 0)\n";
 	}
 }
 
