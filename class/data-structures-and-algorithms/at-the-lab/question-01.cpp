@@ -15,6 +15,7 @@ void nhap(Mang &);
 void xuat(Mang);
 void sapxep(Mang &);
 void swap(int &a, int &b);
+void chen(Mang &, unsigned, int);
 
 int main() {
 	Mang mang;
@@ -25,6 +26,17 @@ int main() {
 	sapxep(mang);
 	cout << "Mang da sap xep: ";
 	xuat(mang);
+	unsigned vtchen;
+	int ptchen;
+	cout << "Nhap vi tri va phan tu can chen: ";
+	cin >> vtchen >> ptchen;
+	if (vtchen > mang.soluong) {
+		cout << "Vi tri khong hop le\n";
+	} else {
+		chen(mang, vtchen, ptchen);
+		cout << "Mang sau khi da chen phan tu " << ptchen << " vao vi tri " << vtchen << ": ";
+		xuat(mang);
+	}
 	return 0;
 }
 
