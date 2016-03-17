@@ -14,3 +14,13 @@ int main();
 void khoitao(Mang &);
 void nhap(Mang &);
 void xuat(Mang &);
+
+int main() {
+	Mang mang;
+	khoitao(mang);
+	cout << "Nhap so luong va cac phan tu: ";
+	nhap(mang);
+	cout << "Mang da nhap: ";
+	xuat(mang);
+	return 0;
+}
