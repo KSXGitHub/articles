@@ -106,10 +106,13 @@ bool khongrong(Mang mang) {
 unsigned timxoa(Mang &mang, unsigned ptxoa) {
 	unsigned daxoa = 0;
 	for (unsigned l = 0, r = 0; r != mang.soluong; ++r) {
-		if (mang[r] != ptxoa) {
+		if (mang[r] == ptxoa) {
+			++daxoa;
+		} else {
 			++l;
 		}
 		mang[l] = mang[r];
 	}
+	mang.soluong -= daxoa;
 	return daxoa;
 }
