@@ -16,8 +16,9 @@ void xuat(Mang);
 void sapxep(Mang &);
 void swap(int &a, int &b);
 void chen(Mang &, unsigned, int);
+unsigned timxoa(Mang &, int);
 bool ktday(Mang);
-bool ktrong(Mang);
+bool khongrong(Mang);
 
 int main() {
 	Mang mang;
@@ -39,6 +40,18 @@ int main() {
 			chen(mang, vtchen, ptchen);
 			cout << "Mang sau khi da chen phan tu " << ptchen << " vao vi tri " << vtchen << ": ";
 			xuat(mang);
+		}
+	}
+	if (khongrong(mang)) {
+		int ptxoa;
+		cout << "Nhap phan tu can xoa: ";
+		cin >> ptxoa;
+		unsigned daxoa = timxoa(mang, ptxoa);
+		if (daxoa) {
+			cout << "Da xoa " << daxoa << " phan tu trong mang: ";
+			xuatmang(mang);
+		} else {
+			cout << "Khong tim thay phan tu " << ptxoa << " trong mang\n";
 		}
 	}
 	return 0;
@@ -86,6 +99,17 @@ bool ktday(Mang mang) {
 	return mang.soluong == MAX_LENGTH;
 }
 
-bool ktrong(Mang mang) {
-	return !mang.soluong;
+bool khongrong(Mang mang) {
+	return bool(mang.soluong);
+}
+
+unsigned timxoa(Mang &mang, unsigned ptxoa) {
+	unsigned daxoa = 0;
+	for (unsigned l = 0, r = 0; r != mang.soluong; ++r) {
+		if (mang[r] != ptxoa) {
+			++l;
+		}
+		mang[l] = mang[r];
+	}
+	return daxoa;
 }
