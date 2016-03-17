@@ -7,7 +7,7 @@ const int MAX_LENGTH = 20;
 
 struct Mang {
 	int phantu[MAX_LENGTH];
-	unsigned dodai;
+	unsigned soluong;
 };
 
 int main();
@@ -29,14 +29,14 @@ int main() {
 }
 
 void nhap(Mang &mang) {
-	cin >> mang.dodai;
-	for (unsigned i = 0; i != mang.dodai; ++i) {
+	cin >> mang.soluong;
+	for (unsigned i = 0; i != mang.soluong; ++i) {
 		cin >> mang.phantu[i];
 	}
 }
 
 void xuat(Mang mang) {
-	for (unsigned i = 0; i != mang.dodai; ++i) {
+	for (unsigned i = 0; i != mang.soluong; ++i) {
 		cout << mang.phantu[i] << '\x20';
 	}
 	cout << endl;
