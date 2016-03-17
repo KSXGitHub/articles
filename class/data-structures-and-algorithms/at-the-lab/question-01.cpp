@@ -11,16 +11,28 @@ struct Mang {
 };
 
 int main();
-void khoitao(Mang &);
 void nhap(Mang &);
 void xuat(Mang &);
 
 int main() {
 	Mang mang;
-	khoitao(mang);
 	cout << "Nhap so luong va cac phan tu: ";
 	nhap(mang);
 	cout << "Mang da nhap: ";
 	xuat(mang);
 	return 0;
+}
+
+void nhap(Mang &mang) {
+	cin >> mang.dodai;
+	for (unsigned i = 0; i != mang.dodai; ++i) {
+		cin >> mang.phantu[i];
+	}
+}
+
+void xuat(Mang &mang) {
+	for (unsigned i = 0; i != mang.dodai; ++i) {
+		cout << mang.phantu[i] << '\x20';
+	}
+	cout << endl;
 }
