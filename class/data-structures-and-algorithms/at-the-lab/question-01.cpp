@@ -13,12 +13,16 @@ struct Mang {
 int main();
 void nhap(Mang &);
 void xuat(Mang &);
+void sapxep(Mang &);
 
 int main() {
 	Mang mang;
 	cout << "Nhap so luong va cac phan tu: ";
 	nhap(mang);
 	cout << "Mang da nhap: ";
+	xuat(mang);
+	sapxep(mang);
+	cout << "Mang da sap xep: ";
 	xuat(mang);
 	return 0;
 }
