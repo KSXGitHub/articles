@@ -16,6 +16,8 @@ void xuat(Mang);
 void sapxep(Mang &);
 void swap(int &a, int &b);
 void chen(Mang &, unsigned, int);
+bool ktday(Mang);
+bool ktrong(Mang);
 
 int main() {
 	Mang mang;
@@ -26,16 +28,18 @@ int main() {
 	sapxep(mang);
 	cout << "Mang da sap xep: ";
 	xuat(mang);
-	unsigned vtchen;
-	int ptchen;
-	cout << "Nhap vi tri va phan tu can chen: ";
-	cin >> vtchen >> ptchen;
-	if (vtchen > mang.soluong) {
-		cout << "Vi tri khong hop le\n";
-	} else {
-		chen(mang, vtchen, ptchen);
-		cout << "Mang sau khi da chen phan tu " << ptchen << " vao vi tri " << vtchen << ": ";
-		xuat(mang);
+	if (!ktday(mang)) {
+		unsigned vtchen;
+		int ptchen;
+		cout << "Nhap vi tri va phan tu can chen: ";
+		cin >> vtchen >> ptchen;
+		if (vtchen > mang.soluong) {
+			cout << "Vi tri khong hop le\n";
+		} else {
+			chen(mang, vtchen, ptchen);
+			cout << "Mang sau khi da chen phan tu " << ptchen << " vao vi tri " << vtchen << ": ";
+			xuat(mang);
+		}
 	}
 	return 0;
 }
@@ -68,4 +72,20 @@ void swap(int &a, int &b) {
 	int t = a;
 	a = b;
 	b = t;
+}
+
+void chen(Mang &mang, unsigned vitri, int phantumoi) {
+	for (unsigned i = mang.vitri; i != vitri; --i) {
+		mang.phantu[i] = mang.phantu[i - 1];
+	}
+	mang.phantu[vitri] = phantumoi;
+	++mang.soluong;
+}
+
+bool ktday(Mang mang) {
+	return mang.soluong == MAX_LENGTH;
+}
+
+bool ktrong(Mang mang) {
+	return !mang.soluong;
 }
