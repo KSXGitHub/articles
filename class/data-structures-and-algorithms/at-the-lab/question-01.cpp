@@ -12,8 +12,9 @@ struct Mang {
 
 int main();
 void nhap(Mang &);
-void xuat(Mang &);
+void xuat(Mang);
 void sapxep(Mang &);
+void swap(int &a, int &b);
 
 int main() {
 	Mang mang;
@@ -34,9 +35,25 @@ void nhap(Mang &mang) {
 	}
 }
 
-void xuat(Mang &mang) {
+void xuat(Mang mang) {
 	for (unsigned i = 0; i != mang.dodai; ++i) {
 		cout << mang.phantu[i] << '\x20';
 	}
 	cout << endl;
+}
+
+void sapxep(Mang &mang) {
+	for (unsigned i = 0, e = mang.soluong - 1; i != e; ++i) {
+		for (unsigned j = i + 1; j != mang.soluong; ++j) {
+			if (mang.phantu[j] < mang.phantu[i]) {
+				swap(mang.phantu[i], mang.phantu[j]);
+			}
+		}
+	}
+}
+
+void swap(int &a, int &b) {
+	int t = a;
+	a = b;
+	b = t;
 }
