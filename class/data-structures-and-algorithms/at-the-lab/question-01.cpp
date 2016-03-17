@@ -49,7 +49,7 @@ int main() {
 		unsigned daxoa = timxoa(mang, ptxoa);
 		if (daxoa) {
 			cout << "Da xoa " << daxoa << " phan tu trong mang: ";
-			xuatmang(mang);
+			xuat(mang);
 		} else {
 			cout << "Khong tim thay phan tu " << ptxoa << " trong mang\n";
 		}
