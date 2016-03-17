@@ -106,7 +106,7 @@ bool khongrong(Mang mang) {
 unsigned timxoa(Mang &mang, int ptxoa) {
 	unsigned daxoa = 0;
 	for (unsigned l = 0, r = 0; r != mang.soluong; ++r) {
-		if (mang.phantu[r] == ptxoa) {
+		if (mang.phantu[l] == ptxoa) {
 			++daxoa;
 		} else {
 			++r;
