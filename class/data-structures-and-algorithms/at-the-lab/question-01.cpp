@@ -3,7 +3,7 @@
 
 using namespace std;
 
-const int MAX_LENGTH = 20;
+const int MAX_LENGTH = 255;
 
 struct Mang {
 	int phantu[MAX_LENGTH];
@@ -104,13 +104,14 @@ bool khongrong(Mang mang) {
 }
 
 unsigned timxoa(Mang &mang, int ptxoa) {
-	unsigned daxoa = 0;
-	for (unsigned l = 0, r = 0; r != mang.soluong; ++r) {
-		if (mang.phantu[l] == ptxoa) {
+	unsigned daxoa = 0, l = 0, r = 0;
+	while (r != mang.soluong) {
+		if (mang.phantu[r] == ptxoa) {
 			++daxoa;
 		} else {
-			++r;
+			++l;
 		}
+		++r;
 		mang.phantu[l] = mang.phantu[r];
 	}
 	mang.soluong -= daxoa;
