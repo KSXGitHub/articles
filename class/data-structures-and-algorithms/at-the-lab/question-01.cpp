@@ -109,7 +109,7 @@ unsigned timxoa(Mang &mang, int ptxoa) {
 		if (mang.phantu[r] == ptxoa) {
 			++daxoa;
 		} else {
-			++l;
+			++r;
 		}
 		mang.phantu[l] = mang.phantu[r];
 	}
