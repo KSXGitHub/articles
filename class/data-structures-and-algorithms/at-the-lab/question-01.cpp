@@ -75,7 +75,7 @@ void swap(int &a, int &b) {
 }
 
 void chen(Mang &mang, unsigned vitri, int phantumoi) {
-	for (unsigned i = mang.vitri; i != vitri; --i) {
+	for (unsigned i = mang.soluong; i != vitri; --i) {
 		mang.phantu[i] = mang.phantu[i - 1];
 	}
 	mang.phantu[vitri] = phantumoi;
