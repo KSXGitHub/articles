@@ -4,7 +4,7 @@
 
 using namespace std;
 
-constexpr BITLENGTH = sizeof(unsigned) * 8;
+constexpr auto BITLENGTH = sizeof(unsigned) * 8;
 typedef char BinStr[BITLENGTH];
 
 int main();
