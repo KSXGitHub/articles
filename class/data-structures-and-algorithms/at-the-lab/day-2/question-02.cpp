@@ -15,5 +15,8 @@ int main() {
 }
 
 unsigned sum(unsigned n) {
-	return n && (n + sum(n - 1));
+	if (n) {
+		return n + sum(n - 1);
+	}
+	return 0;
 }
