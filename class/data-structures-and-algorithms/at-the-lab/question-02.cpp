@@ -10,3 +10,18 @@ struct SinhVien {
 	HoTen hoten;
 	float d1, d2, d3;
 };
+
+struct DanhSachSinhVien {
+	constexpr unsigned MAX_LENGTH = 255;
+	SinhVien sinhvien[MAX_LENGTH];
+	unsigned soluong;
+};
+
+int main();
+void nhap(DanhSachSinhVien &);
+
+int main() {
+	DanhSachSinhVien danhsach;
+	nhap(danhsach);
+	return 0;
+}
