@@ -9,7 +9,7 @@ unsigned sum(unsigned);
 int main() {
 	unsigned n;
 	cout << "n = ";
-	cin >> b;
+	cin >> n;
 	cout << "S(n) = " << sum(n) << endl;
 	return 0;
 }
