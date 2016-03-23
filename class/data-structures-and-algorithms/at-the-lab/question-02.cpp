@@ -25,3 +25,11 @@ int main() {
 	nhap(danhsach);
 	return 0;
 }
+
+void nhap(DanhSachSinhVien &danhsach) {
+	cout << "Nhap so luong sinh vien: ";
+	cin >> danhsach.soluong;
+	for (auto i = 0u; i != danhsach.soluong; ++i) {
+		
+	}
+}
