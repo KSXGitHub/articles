@@ -8,19 +8,20 @@ constexpr auto BITLENGTH = sizeof(unsigned) * 8;
 typedef char BinStr[BITLENGTH];
 
 int main();
-unsigned fromBinStr(BinStr);
+unsigned fromBinStr(char *, unsigned);
 
 int main() {
 	BinStr bs;
 	cout << "Nhap mot chuoi nhi phan: ";
 	cin.getline(bs, BITLENGTH);
-	cout << "Dang thap phan: " << fromBinStr(bs) << endl;
+	unsigned length = strlen(bs);
+	cout << "Dang thap phan: " << fromBinStr(bs + length - 1, bs + length) << endl;
 	return 0;
 }
 
-unsigned fromBinStr(BinStr bs) {
-	if (*bs) {
-		return ((*bs - '0') << 1) + fromBinStr(bs + 1);
+unsigned fromBinStr(char *end, unsigned length) {
+	if (length) {
+		return ((*end - '0') << length) + fromBinStr(end - 1, length - 1);
 	}
 	return 0;
 }
