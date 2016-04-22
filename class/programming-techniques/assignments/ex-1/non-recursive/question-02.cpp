@@ -4,7 +4,11 @@
 using namespace std;
 
 unsigned calc(unsigned n) {
-    return n ? n * n + calc(n - 1) : 0;
+    unsigned result = 0;
+    for ( ; n; --n) {
+        result += n * n;
+    }
+    return result;
 }
 
 int main() {
