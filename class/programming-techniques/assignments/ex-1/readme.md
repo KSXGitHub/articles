@@ -7,7 +7,7 @@
 2.	Tính tổng S = 1<sup>2</sup> + 2<sup>2</sup> + 3<sup>2</sup> + ... + n<sup>2</sup>
 3.	Tính và in số hạng thứ n của dãy fibonacci.
 4.	Tìm và in ước chung lớn nhất của 2 số nguyên dương.
-5.	Tính và in an, với a là số thực và n là số nguyên dương.
+5.	Tính và in a<sup>n</sup>, với a là số thực và n là số nguyên dương.
 6.	Nhập số hạng đầu tiên và công sai của một cấp số cộng. Tính và in số hạng thứ n của cấp số.
 7.	Tính và in số các tổ hợp chập k của n phần tử. Ký hiệu C(n,k)
 8.	Nhập một dãy các số nguyên. Tìm và in min của dãy.
