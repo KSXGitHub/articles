@@ -22,6 +22,6 @@
 
 ## Code
 
- * [Đệ quy]('./recursive')
+ * [Đệ quy](./recursive)
 
- * [Không đệ quy]('./non-recursive')
+ * [Không đệ quy](./non-recursive)
