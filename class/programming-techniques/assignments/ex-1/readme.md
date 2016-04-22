@@ -4,7 +4,7 @@
 ## Câu hỏi
 
 1.	Tính và in n giai thừa.
-2.	Tính tổng S = 1<sup>2</sup> + 2<sup>2</sup> + 3<sup>2</sup> + .. + n<sup>2</sup>
+2.	Tính tổng S = 1<sup>2</sup> + 2<sup>2</sup> + 3<sup>2</sup> + ... + n<sup>2</sup>
 3.	Tính và in số hạng thứ n của dãy fibonacci.
 4.	Tìm và in ước chung lớn nhất của 2 số nguyên dương.
 5.	Tính và in an, với a là số thực và n là số nguyên dương.
