@@ -40,7 +40,7 @@ namespace AVLTree {
     }
 
     void addNode(Tree &tree, Data data) {
-        bool rotate = true;
+        bool rotate = false;
         _addNode(tree, data, rotate);
     }
 
