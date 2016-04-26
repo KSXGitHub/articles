@@ -40,8 +40,7 @@ namespace AVLTree {
     }
 
     void addNode(Tree &tree, Data data) {
-        bool rotate = false;
-        _addNode(tree, data, rotate);
+        _addNode(tree, data);
     }
 
     void _viewTree(Tree tree, unsigned level) {
@@ -72,6 +71,48 @@ namespace AVLTree {
         // make new line
         cout << endl;
 
+    }
+
+    void _addNode(Tree &tree, Data data) {
+        if (tree) {
+            tree = new Node(data);
+        } else if (data < tree->data) {
+            _addNode(tree->left, data);
+            if (tree->bal) {
+                if (tree->bal == -1) {
+                    _rotateLeft(tree);
+                }
+                tree->bal = 0;
+            } else {
+                tree->bal = -1;
+            }
+        } else if (data > tree->data) {
+            _addNode(tree->right, data);
+            if (tree->bal) {
+                if (tree->bal == 1) {
+                    _rotateRight(tree);
+                }
+                tree->bal = 0;
+            } else {
+                tree->bal = 1;
+            }
+        }
+    }
+
+    void _rotateLeft(Tree &origin) {
+        Tree p1 = origin->left;
+        if (p1->bal == -1) {
+            origin->left = p1->right;
+            p1->right = origin;
+            origin = p1;
+        } else {
+            Tree p2 = p1->right;
+            origin->left = p1->right;
+            p2->right = p;
+            p1->right = p2->left;
+            p2->left = p1;
+            // I'll handle it myself
+        }
     }
 
 }
