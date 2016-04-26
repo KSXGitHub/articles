@@ -11,11 +11,11 @@ int main() {
     unsigned count;
     cout << "Nhap so luong va cac node: ";
     for ( ; count; --count) {
-        int data;
+        Data data;
         cin >> data;
         addNode(tree, data);
     }
     cout << "Cay can bang da nhap:\n";
-    viewTree(cout);
+    viewTree(tree);
     return 0;
 }
