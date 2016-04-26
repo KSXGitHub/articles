@@ -44,4 +44,34 @@ namespace AVLTree {
         _addNode(tree, data, rotate);
     }
 
+    void _viewTree(Tree tree, unsigned level) {
+
+        // display level
+        cout << '_';
+        for (unsigned count = level; count; --count) {
+            cout << '_';
+        }
+
+        // display tree
+        if (tree) {
+
+            // display data
+            cout << tree->data;
+
+            // display branches
+            ++level;
+            _viewTree(tree->left, level);
+            _viewTree(tree->right, level);
+
+        } else {
+
+            cout << 'null';
+
+        }
+
+        // make new line
+        cout << endl;
+
+    }
+
 }
