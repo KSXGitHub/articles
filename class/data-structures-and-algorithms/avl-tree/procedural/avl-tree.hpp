@@ -1,5 +1,6 @@
 
 #include <cstdlib>
+#include <iostream>
 
 namespace AVLTree {
 
@@ -29,7 +30,18 @@ namespace AVLTree {
     // private
     void _viewTree(Tree, unsigned);
     void _addNode(Tree &, Data, bool &);
+    void _rotateLeft(Tree &);
+    void _rotateRight(Tree &);
 
     /* FUNCTION DEFINITIONS */
+
+    void viewTree(Tree tree) {
+        _viewTree(tree, 0);
+    }
+
+    void addNode(Tree &tree, Data data) {
+        bool rotate = true;
+        _addNode(tree, data, rotate);
+    }
 
 }
