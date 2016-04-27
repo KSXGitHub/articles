@@ -107,11 +107,12 @@ namespace AVLTree {
             origin = p1;
         } else {
             Tree p2 = p1->right;
-            origin->left = p1->right;
-            p2->right = p;
+            origin->left = p2->right;
             p1->right = p2->left;
             p2->left = p1;
-            // I'll handle it myself
+            p2->right = origin;
+            origin = p2;
+            // what's next?
         }
     }
 
