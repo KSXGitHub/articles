@@ -21,6 +21,10 @@ namespace AVLTree {
             left = right = NULL;
             bal = 0;
         }
+        ~Node() {
+            delete left;
+            delete right;
+        }
     };
 
     typedef Node *Tree;
