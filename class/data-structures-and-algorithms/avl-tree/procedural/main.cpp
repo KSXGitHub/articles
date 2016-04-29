@@ -17,5 +17,6 @@ int main() {
     }
     cout << "Cay can bang da nhap:\n";
     viewTree(tree);
+    delete tree;
     return 0;
 }
