@@ -54,9 +54,9 @@ namespace AVLTree {
     void _viewTree(Tree tree, unsigned level) {
 
         // display level
-        cout << '_';
-        for (unsigned count = level; count; --count) {
-            cout << '_';
+        cout << ">    ";
+        for (unsigned count = level << 2; count; --count) {
+            cout << '\x20';
         }
 
         // display tree
