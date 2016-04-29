@@ -10,7 +10,7 @@ int main() {
     Tree tree = NULL;
     unsigned count;
     cout << "Nhap so luong va cac node: ";
-    for ( ; count; --count) {
+    for (cin >> count; count; --count) {
         Data data;
         cin >> data;
         addNode(tree, data);
