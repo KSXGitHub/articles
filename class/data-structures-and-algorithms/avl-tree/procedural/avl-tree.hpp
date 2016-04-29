@@ -82,7 +82,7 @@ namespace AVLTree {
     }
 
     void _addNode(Tree &tree, Data data) {
-        if (tree) {
+        if (!tree) {
             tree = new Node(data);
         } else if (data < tree->data) {
             _addNode(tree->left, data);
