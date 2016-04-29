@@ -63,7 +63,7 @@ namespace AVLTree {
         if (tree) {
 
             // display data
-            cout << tree->data;
+            cout << tree->data << endl;
 
             // display branches
             ++level;
@@ -72,12 +72,9 @@ namespace AVLTree {
 
         } else {
 
-            cout << "null";
+            cout << "null" << endl;
 
         }
-
-        // make new line
-        cout << endl;
 
     }
 
