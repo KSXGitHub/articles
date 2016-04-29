@@ -37,7 +37,7 @@ namespace AVLTree {
 
     // private
     void _viewTree(Tree, unsigned);
-    void _addNode(Tree &, Data);
+    void _addNode(Tree &, Data, bool &);
     void _rotateLeft(Tree &);
     void _rotateRight(Tree &);
 
@@ -48,7 +48,8 @@ namespace AVLTree {
     }
 
     void addNode(Tree &tree, Data data) {
-        _addNode(tree, data);
+        bool rotate = false;
+        _addNode(tree, data, rotate);
     }
 
     void _viewTree(Tree tree, unsigned level) {
@@ -78,29 +79,43 @@ namespace AVLTree {
 
     }
 
-    void _addNode(Tree &tree, Data data) {
+    void _addNode(Tree &tree, Data data, bool &rotate) {
         if (!tree) {
             tree = new Node(data);
+            rotate = true;
         } else if (data < tree->data) {
-            _addNode(tree->left, data);
-            if (tree->bal) {
-                if (tree->bal == -1) {
+            _addNode(tree->left, data, rotate);
+            if (rotate) switch (tree->bal) {
+                case -1:
                     _rotateLeft(tree);
-                }
-                tree->bal = 0;
-            } else {
-                tree->bal = -1;
+                    tree->bal = 0;
+                    rotate = false;
+                    break;
+                case 0:
+                    tree->bal = -1;
+                    break;
+                case 1:
+                    tree->bal = 0;
+                    rotate = false;
+                    break;
             }
         } else if (data > tree->data) {
-            _addNode(tree->right, data);
-            if (tree->bal) {
-                if (tree->bal == 1) {
+            _addNode(tree->right, data, rotate);
+            if (rotate) switch (tree->bal) {
+                case -1:
+                    tree->bal = 0;
+                    rotate = false;
+                    break;
+                case 0:
+                    tree->bal = 1;
+                    break;
+                case 1:
                     _rotateRight(tree);
-                }
-                tree->bal = 0;
-            } else {
-                tree->bal = 1;
+                    tree->bal = 0;
+                    rotate = false;
             }
+        } else {
+            rotate = false;
         }
     }
 
