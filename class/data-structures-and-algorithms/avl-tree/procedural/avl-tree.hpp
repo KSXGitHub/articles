@@ -4,6 +4,10 @@
 
 namespace AVLTree {
 
+    /* IMPORT NAMESPACES */
+
+    using namespace std;
+
     /* TYPES AND CLASSES */
 
     typedef int Data;
@@ -29,7 +33,7 @@ namespace AVLTree {
 
     // private
     void _viewTree(Tree, unsigned);
-    void _addNode(Tree &, Data, bool &);
+    void _addNode(Tree &, Data);
     void _rotateLeft(Tree &);
     void _rotateRight(Tree &);
 
@@ -64,7 +68,7 @@ namespace AVLTree {
 
         } else {
 
-            cout << 'null';
+            cout << "null";
 
         }
 
