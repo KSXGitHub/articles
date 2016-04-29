@@ -111,8 +111,47 @@ namespace AVLTree {
             p1->right = p2->left;
             p2->left = p1;
             p2->right = origin;
+            switch (p2->bal) {
+                case -1:
+                    p1->bal = 1;
+                    origin->bal = 0;
+                    break;
+                case 1:
+                    p1->bal = 0;
+                    origin->bal = -1;
+                    break;
+                default:
+                    p1->bal = origin->bal = 0;
+            }
             origin = p2;
-            // what's next?
+        }
+    }
+
+    void _rotateRight(Tree &origin) {
+        Tree p1 = origin->right;
+        if (p1->bal == 1) {
+            origin->right = p1->left;
+            p1->left = origin;
+            origin = p1;
+        } else {
+            Tree p2 = p1->left;
+            origin->right = p2->left;
+            p1->left = p2->right;
+            p2->right = p1;
+            p2->left = origin;
+            switch (p2->bal) {
+                case 1:
+                    p1->bal = -1;
+                    origin->bal = 0;
+                    break;
+                case -1:
+                    p1->bal = 0;
+                    origin->bal = 1;
+                    break;
+                default:
+                    p1->bal = origin->bal = 0;
+            }
+            origin = p2;
         }
     }
 
