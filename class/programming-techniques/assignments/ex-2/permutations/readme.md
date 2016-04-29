@@ -32,3 +32,7 @@ function permutations(set: Array of Element): Array of Array of Element
  * `array.except(exception)`: Mảng chứa tất cả các phần tử của mảng `array` nhưng không chứa `exception`
 
  * `concat(a, b)`: Mảng gồm các phần tử của mảng a và mảng b, các phần tử a đứng trước b
+
+## Mã thật
+
+ * [JavaScript](./javascript)
