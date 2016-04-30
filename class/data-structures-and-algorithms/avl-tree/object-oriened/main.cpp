@@ -37,22 +37,23 @@ Tree inputTree() {
 
 void viewTree(Tree tree) {
 
-    for (auto iterator : Tree::Traverse::PreOrder(tree)) {
-
-        // display level
+    auto outlv = [](unsigned level) {
         cout << "> \t";
-        for (unsigned count = iterator.level(); count; --count) {
+        for ( ; level; --level) {
             cout << '\t';
         }
+    };
 
-        // display tree
-        auto tree = iterator.tree();
-        if (tree) {
-            cout << tree.data() << endl;
-        } else {
-            cout << "null\n";
-        }
+    auto onnode = [](Data *pointer, unsigned level) {
+        outlv(level);
+        cout << *pointer << endl;
+    };
 
+    auto onnull = [](unsigned level) {
+        outlv(level);
+        cout << "null\n";
     }
+
+    tree.traverse(Tree::TRAVERSE::POST_ORDER, onnode, onnull);
 
 }
