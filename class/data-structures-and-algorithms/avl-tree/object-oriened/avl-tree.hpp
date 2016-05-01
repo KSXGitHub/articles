@@ -139,9 +139,14 @@ public:
 
     struct TRAVERSE {
         struct Order {};
-        static struct PreOrder : Order {} PRE_ORDER;
-        static struct MidOrder : Order {} MID_ORDER;
-        static struct PostOrder : Order {} POST_ORDER;
+        struct PreOrder : Order {};
+        struct MidOrder : Order {};
+        struct PostOrder : Order {};
+        typedef void (*OnNode)(Data *, unsigned);
+        typedef void (*OnNull)(unsigned);
+        static constexpr auto PRE_ORDER = PreOrder();
+        static constexpr auto MID_ORDER = MidOrder();
+        static constexpr auto POST_ORDER = PostOrder();
     };
 
     /* CONSTRUCTORS */
@@ -186,7 +191,7 @@ public:
         _addNode(origin, data, rotate);
     }
 
-    void traverse(TRAVERSE::PreOrder order, void (*onnode)(Data *, unsigned), void (*onnull)(unsigned), unsigned level = 0) {
+    void traverse(TRAVERSE::PreOrder order, TRAVERSE::OnNode onnode, TRAVERSE::OnNull onnull, unsigned level = 0) {
         if (origin) {
             onnode(&origin->data, level);
             left().traverse(order, onnode, onnull, level + 1);
@@ -196,7 +201,7 @@ public:
         }
     }
 
-    void traverse(TRAVERSE::MidOrder order, void (*onnode)(Data *, unsigned), void (*onnull)(unsigned), unsigned level = 0) {
+    void traverse(TRAVERSE::MidOrder order, TRAVERSE::OnNode onnode, TRAVERSE::OnNull onnull, unsigned level = 0) {
         if (origin) {
             left().traverse(order, onnode, onnull, level + 1);
             onnode(&origin->data, level);
@@ -206,7 +211,7 @@ public:
         }
     }
 
-    void traverse(TRAVERSE::PostOrder order, void (*onnode)(Data *, unsigned), void (*onnull)(unsigned), unsigned level = 0) {
+    void traverse(TRAVERSE::PostOrder order, TRAVERSE::OnNode onnode, TRAVERSE::OnNull onnull, unsigned level = 0) {
         if (origin) {
             left().traverse(order, onnode, onnull, level + 1);
             right().traverse(order, onnode, onnull, level + 1);
