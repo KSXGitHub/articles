@@ -189,9 +189,28 @@ public:
     void traverse(TRAVERSE::PreOrder order, void (*onnode)(Data *, unsigned), void (*onnull)(unsigned), unsigned level = 0) {
         if (origin) {
             onnode(&origin->data, level);
-            ++level;
-            left().traverse(order, onnode, onnull);
-            right().traverse(order, onnode, onnull);
+            left().traverse(order, onnode, onnull, level + 1);
+            right().traverse(order, onnode, onnull, level + 1);
+        } else {
+            onnull(level);
+        }
+    }
+
+    void traverse(TRAVERSE::MidOrder order, void (*onnode)(Data *, unsigned), void (*onnull)(unsigned), unsigned level = 0) {
+        if (origin) {
+            left().traverse(order, onnode, onnull, level + 1);
+            onnode(&origin->data, level);
+            right().traverse(order, onnode, onnull, level + 1);
+        } else {
+            onnull(level);
+        }
+    }
+
+    void traverse(TRAVERSE::PostOrder order, void (*onnode)(Data *, unsigned), void (*onnull)(unsigned), unsigned level = 0) {
+        if (origin) {
+            left().traverse(order, onnode, onnull, level + 1);
+            right().traverse(order, onnode, onnull, level + 1);
+            onnode(&origin->data, level);
         } else {
             onnull(level);
         }
