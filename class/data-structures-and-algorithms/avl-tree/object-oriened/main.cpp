@@ -54,6 +54,6 @@ void viewTree(Tree tree) {
         cout << "null\n";
     }
 
-    tree.traverse(Tree::TRAVERSE::POST_ORDER, onnode, onnull);
+    tree.traverse(Tree::TRAVERSE::PRE_ORDER, onnode, onnull);
 
 }
