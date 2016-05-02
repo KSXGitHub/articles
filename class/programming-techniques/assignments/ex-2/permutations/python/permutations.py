@@ -2,10 +2,11 @@
 def permutations(pattern):
 
     if (pattern.__len__()):
-        result = set();
-        for i in result:
+        result = [];
+        for i in pattern:
             for j in permutations(pattern - {i}):
-                result.add([i] + j)
+                result += [[i] + j]
+        return result
 
     else:
-        return {[]}
+        return [[]]
