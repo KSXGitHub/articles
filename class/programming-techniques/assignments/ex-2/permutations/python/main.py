@@ -1,5 +1,5 @@
 
-import permutations from permutations
+from permutations import permutations
 
 count = int(input("Nhap so luong cac phan tu cua moi hoan vi: "));
 
