@@ -3,7 +3,7 @@
 
 ## Yêu cầu
 
- * [Python 3x](python.org)
+ * [Python 3x](https://www.python.org/downloads/)
 
 ## Chạy thử
 
