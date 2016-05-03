@@ -8,7 +8,7 @@ count = int(input("Nhap so luong cac phan tu cua moi hoan vi: ") if argv.__len__
 if count < 0:
     raise "So luong phan tu moi hoan vi phai la mot so tu nhien"
 
-pattern = set(range(0, count));
+pattern = set(range(0, count))
 
 print("Tat ca cac hoan vi cua", pattern)
 
