@@ -16,7 +16,6 @@ function permutations(set: Array of Element): Array of Array of Element
                 var addend = concat([i], j); # Mảng addend là một hoán vị của set, có phần tử đầu là i, các phần tử còn lại phía sau là j
                 result.add(addend); # Thêm addend vào cuối mảng result
         return result;
-
 ```
 
 ### Giải thích ký hiệu
