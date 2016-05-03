@@ -1,7 +1,7 @@
 
 # Thiết kế Cây cân bằng theo mô hình Lập trình hướng đối tượng
 
-## Thiết kế chung của Lớp [`AVLTree`](./avl-tree.hpp#L4)
+## Thiết kế chung của Lớp [`AVLTree`](./avl-tree.hpp#L4-L225)
 
 ```c++
 template <class Data>
@@ -41,10 +41,10 @@ struct AVLTree {
 };
 ```
 
-## Chương trình chính - [`main`](./main.cpp#L14)
+## Chương trình chính - [`main`](./main.cpp#L14-L19)
 
  * **Kiểu dữ liệu** được sử dụng: Cây cân bằng của các `int` ([`Data`](./main.cpp#L7)|[`Tree`](./main.cpp#L8))
 
- * **Nhập cây** bằng vòng lặp và phương thức [`Tree::addNode`](./avl-tree.hpp#L187) ([`inputTree`](./main.cpp#L21))
+ * **Nhập cây** bằng vòng lặp và phương thức [`Tree::addNode`](./avl-tree.hpp#L187-L190) hay [`Tree::_addNode`](./avl-tree.hpp#L36-L74) ([`inputTree`](./main.cpp#L21-36))
 
- * **Xem cây** ([`viewTree`](./main.hpp#L38)) bằng cách *duyệt cây* theo thứ tự NLR ([`traverse`](./avl-tree.hpp#L192))
+ * **Xem cây** ([`viewTree`](./main.hpp#L38-L59)) bằng cách *duyệt cây* theo thứ tự NLR ([`traverse`](./avl-tree.hpp#L192-L201))
