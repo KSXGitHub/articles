@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <functional>
 #include "avl-tree.hpp"
 
 using namespace std;
@@ -44,15 +45,15 @@ void viewTree(Tree tree) {
         }
     };
 
-    auto onnode = [](Data *pointer, unsigned level) {
+    auto onnode = [outlv](Data *pointer, unsigned level) {
         outlv(level);
         cout << *pointer << endl;
     };
 
-    auto onnull = [](unsigned level) {
+    auto onnull = [outlv](unsigned level) {
         outlv(level);
         cout << "null\n";
-    }
+    };
 
     tree.traverse(Tree::TRAVERSE::PRE_ORDER, onnode, onnull);
 
