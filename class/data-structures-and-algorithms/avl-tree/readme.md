@@ -15,6 +15,12 @@
 
  > Lệch phải: `bal` = **+1**
 
+## Codes
+
+ * [Hướng thủ tục](./procedural)
+
+ * [Hướng đối tượng](./object-oriened)
+
 ## Xem thêm
 
  * [AVL Tree demo](http://www.qmatica.com/DataStructures/Trees/AVL/AVLTree.html)
