@@ -3,7 +3,7 @@
 from permutations import permutations
 from sys import argv
 
-count = int(input("Nhap so luong cac phan tu cua moi hoan vi: ") if argv.__len__() == 1 else argv[1])
+count = int(input("Nhap so luong cac phan tu cua moi hoan vi: ") if len(argv) == 1 else argv[1])
 
 if count < 0:
     raise "So luong phan tu moi hoan vi phai la mot so tu nhien"
