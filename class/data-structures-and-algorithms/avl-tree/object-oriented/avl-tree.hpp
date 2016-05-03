@@ -140,10 +140,10 @@ public:
     struct TRAVERSE {
         struct Order {};
         struct PreOrder : Order {};
-        struct MidOrder : Order {};
+        struct InOrder : Order {};
         struct PostOrder : Order {};
         static constexpr auto PRE_ORDER = PreOrder();
-        static constexpr auto MID_ORDER = MidOrder();
+        static constexpr auto IN_ORDER = InOrder();
         static constexpr auto POST_ORDER = PostOrder();
     };
 
@@ -201,7 +201,7 @@ public:
     }
 
     template <class OnNode, class OnNull>
-    void traverse(typename TRAVERSE::MidOrder order, OnNode onnode, OnNull onnull, unsigned level = 0) {
+    void traverse(typename TRAVERSE::InOrder order, OnNode onnode, OnNull onnull, unsigned level = 0) {
         if (origin) {
             left().traverse(order, onnode, onnull, level + 1);
             onnode(&origin->data, level);
