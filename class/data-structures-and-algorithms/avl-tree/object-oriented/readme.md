@@ -47,4 +47,4 @@ struct AVLTree {
 
  * **Nhập cây** bằng vòng lặp và phương thức [`Tree::addNode`](./avl-tree.hpp#L187-L190) hay [`Tree::_addNode`](./avl-tree.hpp#L36-L74) ([`inputTree`](./main.cpp#L21-36))
 
- * **Xem cây** ([`viewTree`](./main.hpp#L38-L59)) bằng cách *duyệt cây* theo thứ tự NLR ([`traverse`](./avl-tree.hpp#L192-L201))
+ * **Xem cây** ([`viewTree`](./main.cpp#L38-L59)) bằng cách *duyệt cây* theo thứ tự NLR ([`traverse`](./avl-tree.hpp#L192-L201))
