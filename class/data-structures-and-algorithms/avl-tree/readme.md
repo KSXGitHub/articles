@@ -19,7 +19,7 @@
 
  * [Hướng thủ tục](./procedural)
 
- * [Hướng đối tượng](./object-oriened)
+ * [Hướng đối tượng](./object-oriented)
 
 ## Xem thêm
 
