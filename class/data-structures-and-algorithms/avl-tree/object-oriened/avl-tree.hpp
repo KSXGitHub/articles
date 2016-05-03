@@ -151,7 +151,7 @@ public:
 
     /* CONSTRUCTORS */
 
-    AVLTree(Node origin = NULL) {
+    AVLTree(Node *origin = NULL) {
         AVLTree::origin = origin;
     }
 
