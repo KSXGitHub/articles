@@ -1,6 +1,5 @@
 
 #include <iostream>
-#include <functional>
 #include "avl-tree.hpp"
 
 using namespace std;
