@@ -191,7 +191,7 @@ public:
         _addNode(origin, data, rotate);
     }
 
-    void traverse(TRAVERSE::PreOrder order, TRAVERSE::OnNode onnode, TRAVERSE::OnNull onnull, unsigned level = 0) {
+    void traverse(typename TRAVERSE::PreOrder order, typename TRAVERSE::OnNode onnode, typename TRAVERSE::OnNull onnull, unsigned level = 0) {
         if (origin) {
             onnode(&origin->data, level);
             left().traverse(order, onnode, onnull, level + 1);
@@ -201,7 +201,7 @@ public:
         }
     }
 
-    void traverse(TRAVERSE::MidOrder order, TRAVERSE::OnNode onnode, TRAVERSE::OnNull onnull, unsigned level = 0) {
+    void traverse(typename TRAVERSE::MidOrder order, typename TRAVERSE::OnNode onnode, typename TRAVERSE::OnNull onnull, unsigned level = 0) {
         if (origin) {
             left().traverse(order, onnode, onnull, level + 1);
             onnode(&origin->data, level);
@@ -211,7 +211,7 @@ public:
         }
     }
 
-    void traverse(TRAVERSE::PostOrder order, TRAVERSE::OnNode onnode, TRAVERSE::OnNull onnull, unsigned level = 0) {
+    void traverse(typename TRAVERSE::PostOrder order, typename TRAVERSE::OnNode onnode, typename TRAVERSE::OnNull onnull, unsigned level = 0) {
         if (origin) {
             left().traverse(order, onnode, onnull, level + 1);
             right().traverse(order, onnode, onnull, level + 1);
