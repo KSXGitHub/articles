@@ -23,7 +23,7 @@ Tree inputTree() {
     Tree tree;
     unsigned count;
 
-    cout << "Nhap so luong va cac node:";
+    cout << "Nhap so luong va cac node: ";
 
     for (cin >> count; count; --count) {
         Data data;
