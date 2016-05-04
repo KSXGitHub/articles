@@ -1,6 +1,10 @@
 
 # Thiết kế Cây cân bằng theo mô hình Lập trình hướng đối tượng
 
+## Yêu cầu trình dịch
+
+ * Hỗ trợ C++14
+
 ## Thiết kế chung của Lớp [`AVLTree`](./avl-tree.hpp#L4-L225)
 
 ```c++

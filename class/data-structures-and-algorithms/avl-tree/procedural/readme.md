@@ -1,6 +1,10 @@
 
 # Thiết kế Cây cân bằng theo mô hình Lập trình hướng thử tục
 
+## Yêu cầu trình dịch
+
+ * Hỗ trợ C++98
+
 ## Các hàm trong [`AVLTree`](./avl-tree.hpp#L34-L36)
 
 ### Hàm xem cây
